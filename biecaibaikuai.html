@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            text-decoration: none;
+        }
+
+        input {
+            outline: none;
+            border: 1px solid #222;
+            position: absolute;
+            left: 482px;
+            top: 30px;
+            background-color: rgb(233, 224, 224);
+        }
+
+        .bigbox {
+            width: 400px;
+            height: 400px;
+            border: 1px solid #222;
+            margin: 50px auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .box {
+            width: 100%;
+            height: 400px;
+            position: relative;
+            top: -95px;
+        }
+
+        .start {
+            position: absolute;
+            width: 70px;
+            height: 30px;
+            right: 473px;
+            top: 17px;
+            color: #fff;
+            border-radius: 20px;
+            text-align: center;
+            background-color: black;
+            line-height: 30px;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        .divs {
+            width: 400px;
+            height: 100px;
+        }
+
+        .odiv {
+            width: 99px;
+            height: 99px;
+            border-left: 1px solid black;
+            border-bottom: 1px solid black;
+            float: left;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="text" value='得分：0' disabled="disabled">
+    <div class="bigbox" >
+        <div class="box"></div>
+    </div>
+    <div class="start"> 开始 </div>
+</body>
+
+</html>
+<script>
+    var that;
+    function Game() {
+        that = this;
+        this.box = document.querySelector(".box");
+        this.bigbox = document.querySelector(".bigbox");
+        this.start = document.querySelector(".start");
+        this.input = document.querySelector("input")
+        this.num = 0;
+        this.speed = 4;
+        this.timer = null;
+        this.flag = true;
+        console.log(this)
+    }
+    //初始化
+   Game.prototype.click = function(){
+       this.start.onclick = function(){
+           this.style.display = "none";
+           that.startgame();
+       }
+   }
+   //开始游戏
+   Game.prototype.startgame = function(){
+    that.timer = setInterval(function () {
+        that.box.style.top = that.box.offsetTop+that.speed+"px";
+        if(that.box.offsetTop>=0){
+            that.createbox();
+            that.box.style.top = -100+"px";
+        }
+        //创建6行格子就删除最后一行
+        if(that.box.children.length == 6) {
+             for (var i = 0; i < 4; i++) {
+                    if (that.box.lastChild.children[i].className == "odiv i") {
+                        clearInterval(that.timer);
+                        that.flag = false;
+                        alert('游戏结束' + '得分是：' + that.num);
+                        alert('手残玩家')
+                    }
+                }
+                that.box.removeChild(that.box.children[that.box.children.length - 1]);
+            }
+        }, 30)
+        that.dianji();
+    }   
+        // 在bigbox中点击
+    Game.prototype.dianji = function(){
+       this.bigbox.addEventListener('click', function (e) {
+            var target = e.target;
+            if (target.className == 'odiv i' && that.flag == true) {
+                target.style.backgroundColor = "#fff";
+                target.className = 'odiv';
+                that.num++;
+                that.input.value = '得分：'+that.num
+            }
+            else if(that.num>6 && that.num<12){
+                clearInterval(that.timer);
+                that.flag = false;
+                alert('游戏结束! ' + '得分是：' + that.num);
+                alert('哟，有点东西！')
+            }
+            else if(that.num>12){
+                clearInterval(that.timer);
+                that.flag = false;
+                alert('游戏结束! ' + '得分是：' + that.num);
+                alert('大神！请收下我的膝盖！')
+            }
+            if (that.num % 6 == 0) {
+                that.speed += 2;
+            }
+        })
+    }
+     // 创建元素
+     Game.prototype.createbox = function () {
+        // 创建一行
+        var divs = document.createElement('div');
+        var random = Math.floor(Math.random() * 4);
+        divs.setAttribute('class', 'divs');
+        // 创建4列
+        for (var i = 0; i < 4; i++) {
+            var odiv = document.createElement('div');
+            odiv.setAttribute('class', 'odiv');
+            divs.appendChild(odiv);
+        }
+        if (that.box.children.length == 0) {
+            that.box.appendChild(divs);
+        }
+        else {
+            that.box.insertBefore(divs, that.box.children[0]);
+        }
+        //随机黑色方块
+        var clickBox = that.box.children[0].children[random];
+        clickBox.className = 'odiv i';
+        clickBox.style.backgroundColor = '#000'
+    }
+    //实例化
+    var whiteBlock=new Game();
+    whiteBlock.click()
+</script>

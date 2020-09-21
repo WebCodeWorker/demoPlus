@@ -1,0 +1,147 @@
+
+ul{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+h3{
+    margin-left: 12px;
+}
+.box{
+    display: flex;
+    flex-direction: column;
+}
+.region{
+    display: flex;
+    padding: 0;
+}
+.region li{
+    padding: 18px 0;
+    background: #f5f5f5;
+    flex: 1;
+    text-align: center;
+    border-left: 2px solid white;
+}
+.box .region li:first-child{
+    background: white;
+    font-weight: bolder;
+    border-top-left-radius: 30px;
+}
+.box .region li:last-child{
+   
+    border-top-right-radius: 30px;
+}
+
+.count_b{
+    margin-top: 10px;
+}
+.count{
+    width: 100%;
+}
+.count li{
+    width: 33%; 
+    float: left;
+    text-align: center;
+   
+
+}
+.count li:nth-child(3) span:nth-child(2),.count li:nth-child(6) span:nth-child(2){
+    border: none;
+}
+.count li span{
+    display: inline-block;
+    white-space:nowrap;
+    padding: 3px 10px;
+}
+
+
+
+
+.count li span:nth-child(1){
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+}
+.count li span:nth-child(2){
+    font-weight: bolder;
+    font-size: 22px;
+    color: #b44811;
+    width: 87%;
+    border-right: 1px solid #9999999c;
+}
+.count li span:nth-child(2) strong{
+    color: #b44811;
+}
+.count li span:nth-child(3){
+    font-weight: 300;
+    font-size: 12px;
+    color: #999;    
+}
+strong{
+    color:  #ee5c14;
+}
+/* 疫情详情 */
+
+
+.details{
+    margin:0;
+}
+.details dl{
+    display: flex;
+    margin: 0;
+    height: 47px;
+    font-size: 15px;
+    background: #f5f5f5;
+    border: 1px solid #f5f5f5;
+    border-radius: 30px;
+    margin: 5px 0;
+    
+    
+}
+.details dd{
+    margin: 0;
+    flex: 1;
+    padding: 10px 0;
+    text-align: center;
+}
+.details dd:first-child{
+    font-weight: bold;
+}
+.details dt{
+    padding: 13px;
+    padding-left: 0;
+    width: 16px;
+}
+.area dd:nth-child(2){
+    color: #ee5c14;
+}
+.area dd:nth-child(3){
+    color: #cb4521;
+}
+.area dd:nth-child(4){
+    color: #a6a3a4;
+}
+.area dd:nth-child(5){
+    color: #158660;
+}
+/* 下拉列表 */
+.details ul {
+    display: flex;
+    display: none;
+    margin: 0 8px;
+    border-bottom: 1px solid #999;
+}
+.details ul li{
+    
+    height: 33px;
+    flex: 1;
+    text-align: center;
+    font-size: 15px;
+    padding: 10px 0;
+    overflow: hidden;
+}
+.details ul span{
+    display: inline-block;
+    width: 29px;
+}
+    

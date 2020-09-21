@@ -1,0 +1,35 @@
+*{
+	margin: 0;
+	padding: 0;
+}	
+li{
+	list-style: none;
+
+}
+a{
+	text-decoration:none;
+	color: #666;
+}
+a:hover{
+	color: #f36;
+}
+input{
+	outline: none;
+}
+img{
+	vertical-align: bottom;
+}
+body{
+	font-size: 12px;
+	font-family: "微软雅黑","宋体";
+}
+.w{
+	width: 1200px;
+	margin: 0 auto;
+}
+.fl{
+	float: left;
+}
+.rl{
+	float: right;
+}

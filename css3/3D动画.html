@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+ <style>
+     html,body{
+         height: 100%;
+     }
+     body{
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         perspective: 1000px;
+         perspective-origin: 50% 50%;
+         transform-style: preserve-3d;
+         background-image: linear-gradient(to bottom, #29f9f0 0, #000 80%);
+     }
+     .cube {
+      width: 200px;
+      height: 200px;
+      background: rgba(173, 216, 230, 0.459);
+      position: relative;
+      transform-style: preserve-3d;
+      transform: rotateY(180deg);
+      margin: 0 20px;
+      transition: all 2s;
+      animation: mymove 10s linear infinite;
+    }
+    .side {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      border-radius: 10%;
+      top: 0;
+      left: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .left {
+      background: lightcoral;
+      transform: rotateY(-90deg) translateZ(100px);
+    }
+    .right {
+      background: lightsalmon;
+      transform: rotateY(90deg) translateZ(100px);
+    }
+    .top {
+      background: lightgreen;
+      transform: rotateX(90deg) translateZ(100px);
+    }
+   .bottom {
+      background: lightseagreen;
+      transform: rotateX(90deg) translateZ(-100px);
+    }
+     
+   .front {
+      z-index: 9;
+      background-image: linear-gradient(to bottom, #29f9f0 0, #000 80%);
+      transform: translateZ(100px);
+
+    } 
+   .back {
+      transform: rotateY(180deg) translateZ(100px);
+    } 
+    @keyframes mymove {
+			100% {
+				transform:translateZ(1000px)
+			}
+		}
+ </style>
+<body>
+    <div class="cube">
+        <div class="side left">left</div>
+        <div class="side right">right</div>
+        <div class="side top">top</div>
+        <div class="side bottom">bottom</div>
+        <div class="side front">front</div>
+        <div class="side back">back</div>
+    </div>
+</body>
+<script>
+    document.body.onmousemove = function (event) {
+      document.querySelector(".cube").style.transform = "rotateY(" + event.clientX + "deg) "+"rotateX(" + event.clientY + "deg) "
+      // document.body.style.perspectiveOrigin =
+      // event.clientX + "px " + event.clientY + "px";
+    };
+  </script>
+</html>
