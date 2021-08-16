@@ -31,7 +31,7 @@
             class="product-list"
             v-for="(item, index) in product"
             :key="index"
-            @click="goMeunDetail(item,index)"
+            @click="goMeunDetail(item,index)" 
           >
             <img
               class="auto-img"

@@ -13,7 +13,15 @@
           <div @click="search">搜索</div>
         </template>
       </van-search>
+      
     </div>
+    <div class="box"></div>
+    <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">
+      <van-swipe-item>1</van-swipe-item>
+      <van-swipe-item>2</van-swipe-item>
+      <van-swipe-item>3</van-swipe-item>
+      <van-swipe-item>4</van-swipe-item>
+    </van-swipe>
     <div class="banner">
       <van-tabs
         v-model="active"
@@ -21,9 +29,13 @@
         :animated="true"
         color="#ee0a24"
         title-active-color="#ee0a24"
-        :sticky="true"
+        :sticky="false"
       >
-        <van-tab v-for="(item, index) in hotData" :title="index" :key="index">
+        <van-tab
+          v-for="(item, index) in hotData"
+          :title="item[0].type"
+          :key="index"
+        >
           <div
             class="fl tab-item"
             v-for="(v, i) in item"
@@ -57,44 +69,277 @@ export default {
       active: 0,
       hotData: [
         [
-          {goods_name: "手机",goods_image_url:require('../../assets/images/shop.jpeg'),min_group_price: "999",sales_tip: "88"}, 
-          {goods_name: "手机",goods_image_url:require('../../assets/images/shop.jpeg'),min_group_price: "999",sales_tip: "88"},
-          {goods_name: "手机",goods_image_url:require('../../assets/images/shop.jpeg'),min_group_price: "999",sales_tip: "88"},
-           {goods_name: "手机",goods_image_url:require('../../assets/images/shop.jpeg'),min_group_price: "999",sales_tip: "88"},
-          {goods_name: "手机",goods_image_url:require('../../assets/images/shop.jpeg'),min_group_price: "999",sales_tip: "88"},
-          {goods_name: "手机",goods_image_url:require('../../assets/images/shop.jpeg'),min_group_price: "999",sales_tip: "88"},
+          {
+            type: "华为",
+            goods_name: "手机",
+            goods_image_url: require("../../assets/images/shop.jpeg"),
+            min_group_price: "999",
+            sales_tip: "88",
+          },
+          {
+            goods_name: "手机手机手机手机手机",
+            goods_image_url: require("../../assets/images/shop.jpeg"),
+            min_group_price: "999",
+            sales_tip: "88",
+          },
+          {
+            goods_name: "手机",
+            goods_image_url: require("../../assets/images/shop.jpeg"),
+            min_group_price: "999",
+            sales_tip: "88",
+          },
+          {
+            goods_name: "手机",
+            goods_image_url: require("../../assets/images/shop.jpeg"),
+            min_group_price: "999",
+            sales_tip: "88",
+          },
+          {
+            goods_name: "手机",
+            goods_image_url: require("../../assets/images/shop.jpeg"),
+            min_group_price: "999",
+            sales_tip: "88",
+          },
+          {
+            goods_name: "手机",
+            goods_image_url: require("../../assets/images/shop.jpeg"),
+            min_group_price: "999",
+            sales_tip: "88",
+          },
         ],
-         [
-          {goods_name: "手机",goods_image_url:require('../../assets/images/shop.jpeg'),min_group_price: "999",sales_tip: "88"},
-          {goods_name: "手机",goods_image_url:require('../../assets/images/shop.jpeg'),min_group_price: "999",sales_tip: "88"},
-          {goods_name: "手机",goods_image_url:require('../../assets/images/shop.jpeg'),min_group_price: "999",sales_tip: "88"},
-           {goods_name: "手机",goods_image_url:require('../../assets/images/shop.jpeg'),min_group_price: "999",sales_tip: "88"},
-          {goods_name: "手机",goods_image_url:require('../../assets/images/shop.jpeg'),min_group_price: "999",sales_tip: "88"},
-          {goods_name: "手机",goods_image_url:require('../../assets/images/shop.jpeg'),min_group_price: "999",sales_tip: "88"},
+        [
+          {
+            type: "小米",
+            goods_name: "手机",
+            goods_image_url: require("../../assets/images/shop.jpeg"),
+            min_group_price: "999",
+            sales_tip: "88",
+          },
+          {
+            goods_name: "手机",
+            goods_image_url: require("../../assets/images/shop.jpeg"),
+            min_group_price: "999",
+            sales_tip: "88",
+          },
+          {
+            goods_name: "手机",
+            goods_image_url: require("../../assets/images/shop.jpeg"),
+            min_group_price: "999",
+            sales_tip: "88",
+          },
+          {
+            goods_name: "手机",
+            goods_image_url: require("../../assets/images/shop.jpeg"),
+            min_group_price: "999",
+            sales_tip: "88",
+          },
+          {
+            goods_name: "手机",
+            goods_image_url: require("../../assets/images/shop.jpeg"),
+            min_group_price: "999",
+            sales_tip: "88",
+          },
+          {
+            goods_name: "手机",
+            goods_image_url: require("../../assets/images/shop.jpeg"),
+            min_group_price: "999",
+            sales_tip: "88",
+          },
         ],
-         [
-          {goods_name: "手机",goods_image_url:require('../../assets/images/shop.jpeg'),min_group_price: "999",sales_tip: "88"},
-          {goods_name: "手机",goods_image_url:require('../../assets/images/shop.jpeg'),min_group_price: "999",sales_tip: "88"},
-          {goods_name: "手机",goods_image_url:require('../../assets/images/shop.jpeg'),min_group_price: "999",sales_tip: "88"},
-           {goods_name: "手机",goods_image_url:require('../../assets/images/shop.jpeg'),min_group_price: "999",sales_tip: "88"},
-          {goods_name: "手机",goods_image_url:require('../../assets/images/shop.jpeg'),min_group_price: "999",sales_tip: "88"},
-          {goods_name: "手机",goods_image_url:require('../../assets/images/shop.jpeg'),min_group_price: "999",sales_tip: "88"},
+        [
+          {
+            type: "iPhone",
+            goods_name: "手机",
+            goods_image_url: require("../../assets/images/shop.jpeg"),
+            min_group_price: "999",
+            sales_tip: "88",
+          },
+          {
+            goods_name: "手机",
+            goods_image_url: require("../../assets/images/shop.jpeg"),
+            min_group_price: "999",
+            sales_tip: "88",
+          },
+          {
+            goods_name: "手机",
+            goods_image_url: require("../../assets/images/shop.jpeg"),
+            min_group_price: "999",
+            sales_tip: "88",
+          },
+          {
+            goods_name: "手机",
+            goods_image_url: require("../../assets/images/shop.jpeg"),
+            min_group_price: "999",
+            sales_tip: "88",
+          },
+          {
+            goods_name: "手机",
+            goods_image_url: require("../../assets/images/shop.jpeg"),
+            min_group_price: "999",
+            sales_tip: "88",
+          },
+          {
+            goods_name: "手机",
+            goods_image_url: require("../../assets/images/shop.jpeg"),
+            min_group_price: "999",
+            sales_tip: "88",
+          },
         ],
-         [
-          {goods_name: "手机",goods_image_url:require('../../assets/images/shop.jpeg'),min_group_price: "999",sales_tip: "88"},
-          {goods_name: "手机",goods_image_url:require('../../assets/images/shop.jpeg'),min_group_price: "999",sales_tip: "88"},
-          {goods_name: "手机",goods_image_url:require('../../assets/images/shop.jpeg'),min_group_price: "999",sales_tip: "88"},
-           {goods_name: "手机",goods_image_url:require('../../assets/images/shop.jpeg'),min_group_price: "999",sales_tip: "88"},
-          {goods_name: "手机",goods_image_url:require('../../assets/images/shop.jpeg'),min_group_price: "999",sales_tip: "88"},
-          {goods_name: "手机",goods_image_url:require('../../assets/images/shop.jpeg'),min_group_price: "999",sales_tip: "88"},
+        [
+          {
+            type: "vivo",
+            goods_name: "手机",
+            goods_image_url: require("../../assets/images/shop.jpeg"),
+            min_group_price: "999",
+            sales_tip: "88",
+          },
+          {
+            goods_name: "手机",
+            goods_image_url: require("../../assets/images/shop.jpeg"),
+            min_group_price: "999",
+            sales_tip: "88",
+          },
+          {
+            goods_name: "手机",
+            goods_image_url: require("../../assets/images/shop.jpeg"),
+            min_group_price: "999",
+            sales_tip: "88",
+          },
+          {
+            goods_name: "手机",
+            goods_image_url: require("../../assets/images/shop.jpeg"),
+            min_group_price: "999",
+            sales_tip: "88",
+          },
+          {
+            goods_name: "手机",
+            goods_image_url: require("../../assets/images/shop.jpeg"),
+            min_group_price: "999",
+            sales_tip: "88",
+          },
+          {
+            goods_name: "手机",
+            goods_image_url: require("../../assets/images/shop.jpeg"),
+            min_group_price: "999",
+            sales_tip: "88",
+          },
         ],
-         [
-          {goods_name: "手机",goods_image_url:require('../../assets/images/shop.jpeg'),min_group_price: "999",sales_tip: "88"},
-          {goods_name: "手机",goods_image_url:require('../../assets/images/shop.jpeg'),min_group_price: "999",sales_tip: "88"},
-          {goods_name: "手机",goods_image_url:require('../../assets/images/shop.jpeg'),min_group_price: "999",sales_tip: "88"},
-           {goods_name: "手机",goods_image_url:require('../../assets/images/shop.jpeg'),min_group_price: "999",sales_tip: "88"},
-          {goods_name: "手机",goods_image_url:require('../../assets/images/shop.jpeg'),min_group_price: "999",sales_tip: "88"},
-          {goods_name: "手机",goods_image_url:require('../../assets/images/shop.jpeg'),min_group_price: "999",sales_tip: "88"},
+        [
+          {
+            type: "摩托罗拉",
+            goods_name: "手机",
+            goods_image_url: require("../../assets/images/shop.jpeg"),
+            min_group_price: "999",
+            sales_tip: "88",
+          },
+          {
+            goods_name: "手机",
+            goods_image_url: require("../../assets/images/shop.jpeg"),
+            min_group_price: "999",
+            sales_tip: "88",
+          },
+          {
+            goods_name: "手机",
+            goods_image_url: require("../../assets/images/shop.jpeg"),
+            min_group_price: "999",
+            sales_tip: "88",
+          },
+          {
+            goods_name: "手机",
+            goods_image_url: require("../../assets/images/shop.jpeg"),
+            min_group_price: "999",
+            sales_tip: "88",
+          },
+          {
+            goods_name: "手机",
+            goods_image_url: require("../../assets/images/shop.jpeg"),
+            min_group_price: "999",
+            sales_tip: "88",
+          },
+          {
+            goods_name: "手机",
+            goods_image_url: require("../../assets/images/shop.jpeg"),
+            min_group_price: "999",
+            sales_tip: "88",
+          },
+        ],
+        [
+          {
+            type: "锤子",
+            goods_name: "手机",
+            goods_image_url: require("../../assets/images/shop.jpeg"),
+            min_group_price: "999",
+            sales_tip: "88",
+          },
+          {
+            goods_name: "手机",
+            goods_image_url: require("../../assets/images/shop.jpeg"),
+            min_group_price: "999",
+            sales_tip: "88",
+          },
+          {
+            goods_name: "手机",
+            goods_image_url: require("../../assets/images/shop.jpeg"),
+            min_group_price: "999",
+            sales_tip: "88",
+          },
+          {
+            goods_name: "手机",
+            goods_image_url: require("../../assets/images/shop.jpeg"),
+            min_group_price: "999",
+            sales_tip: "88",
+          },
+          {
+            goods_name: "手机",
+            goods_image_url: require("../../assets/images/shop.jpeg"),
+            min_group_price: "999",
+            sales_tip: "88",
+          },
+          {
+            goods_name: "手机",
+            goods_image_url: require("../../assets/images/shop.jpeg"),
+            min_group_price: "999",
+            sales_tip: "88",
+          },
+        ],
+        [
+          {
+            type: "山寨机就是牛",
+            goods_name: "手机",
+            goods_image_url: require("../../assets/images/shop.jpeg"),
+            min_group_price: "999",
+            sales_tip: "88",
+          },
+          {
+            goods_name: "手机",
+            goods_image_url: require("../../assets/images/shop.jpeg"),
+            min_group_price: "999",
+            sales_tip: "88",
+          },
+          {
+            goods_name: "手机",
+            goods_image_url: require("../../assets/images/shop.jpeg"),
+            min_group_price: "999",
+            sales_tip: "88",
+          },
+          {
+            goods_name: "手机",
+            goods_image_url: require("../../assets/images/shop.jpeg"),
+            min_group_price: "999",
+            sales_tip: "88",
+          },
+          {
+            goods_name: "手机",
+            goods_image_url: require("../../assets/images/shop.jpeg"),
+            min_group_price: "999",
+            sales_tip: "88",
+          },
+          {
+            goods_name: "手机",
+            goods_image_url: require("../../assets/images/shop.jpeg"),
+            min_group_price: "999",
+            sales_tip: "88",
+          },
         ],
       ],
       hotType: [],
@@ -164,4 +409,18 @@ export default {
 </script>
 
 <style lang="less" scoped>
+.menu-search{
+  z-index: 1;
+  height: 80px;
+}
+.box{
+  height: 59px;
+}
+ .my-swipe .van-swipe-item {
+    color: #fff;
+    font-size: 20px;
+    line-height: 150px;
+    text-align: center;
+    background-color: #39a9ed;
+  }
 </style>
