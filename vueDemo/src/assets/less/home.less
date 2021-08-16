@@ -1,0 +1,53 @@
+.home{
+    background: #f7f7f7;
+    margin-bottom: 50px;
+    border-top: 10px solid #fff;
+    .menu-search{
+        position: fixed;
+        top: 10px;
+        width: 100%;
+    }
+  
+    
+    .banner{
+        position: relative;
+        top: 45px;
+        /deep/.van-tab__pane{
+            padding: 10px;
+        }
+        .tab-item{
+            width: calc(~"50% - 30px");
+            padding: 10px;
+            border-radius: 10px;
+            background: #fff;
+            margin: 5px;  
+            img{
+                width: 147.5px;
+                height: 147.5px;
+            }
+        }
+        .title{
+            font-size: 16px;
+            padding: 10px 0;
+            overflow: hidden;
+            white-space: nowrap;
+            //当文本对象溢出是显示...
+            text-overflow: ellipsis;
+        }
+        .price{
+            font-size: 16px;
+            width: 69px;
+            color: #ff5a5a;
+            font-weight: bold;
+            margin-top: 3px;
+        }
+        .saled{
+            color: #a8a8a8;
+            margin-left: 10px;
+            margin-top: 1px;
+        }
+        .money{
+            font-size: 12px;
+        }
+    }
+}
