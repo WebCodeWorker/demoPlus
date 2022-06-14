@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            width: 100px;
+            height: 100px;
+           margin: 100px auto;
+            border: 5px solid rgb(45, 197, 207);
+            border-radius: 50%;
+            animation: tomove 3s 1s infinite ease-in-out alternate;
+        }
+        div:hover{
+            animation: myscale 1s infinite alternate;
+        }
+        @keyframes myscale {
+                from {
+                    transform: scale(1);
+                }
+                to {
+                    transform: scale(2);
+                }
+            }
+        @keyframes tomove{
+            0%{
+                transfrom:translateX(0);
+            }
+            30%{
+                transform: translatez(50px) ;
+            }
+            100%{
+                transform: translateX(200px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div></div>
+</body>
+</html>

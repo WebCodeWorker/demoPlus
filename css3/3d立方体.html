@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="sytle.css">
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        html {
+            width: 100%;
+            height: 100%;
+            /* background-image: linear-gradient(to top right, #29f9f0 0, rgb(192, 40, 124) 80%); */
+            background: linear-gradient( 145deg, hsl(90, 50%, 70%), hsl(270, 50%, 80%)) ;
+
+
+        }
+
+        .wrapper {
+            width: 200px;
+            margin: 200px auto;
+            perspective: 1000px;
+        }
+
+        .wrapper .cube{
+            width: 200px;
+            height: 200px;
+            position: relative;
+            /*设置3d环境*/
+            transform-style: preserve-3d;
+            animation: transform 8s linear infinite ;
+            transition: all 2s ;
+            transform:rotateX(30deg) ;
+            /* animation: paused; */
+        }
+        .bigbox{
+            transform: translate3d(0px,100px,0px);
+            transform-style: preserve-3d;
+        }
+        .box{
+            transform-style: preserve-3d;
+            animation:transform 4s linear infinite ;
+        }
+       
+        @keyframes transform {
+            0% {
+                transform: rotateX(0) rotateY(0) rotateZ(0);
+            }
+
+            100% {
+                transform: rotateX(720deg) rotateY(360deg) rotateZ(360deg);
+            }
+        }
+
+        .cube>div {
+            width: 100%;
+            height: 100%;
+            border: 10px solid #66daff;
+            border-radius: 20px;
+            position: absolute;
+            top: 0;
+            color: #ff92ff;
+            font-size: 36px;
+            font-weight: 100;
+            text-align: center;
+            line-height: 200px;
+            background-color: rgba(51, 51, 51, .3);
+        }
+
+        .out-front {
+            transform: translateZ(100px);
+            transition: all 2s;
+
+        }
+
+        .out-back {
+            transform: translateZ(-100px);
+            transition: all 2s;
+
+        }
+
+        .out-left {
+            transform: translateX(-100px) rotateY(-90deg);
+            transition: all 2s;
+
+        }
+
+        .out-right {
+            transform: translateX(100px) rotateY(90deg);
+            transition: all 2s;
+
+        }
+
+        .out-top {
+            transform: translateY(-100px) rotateX(90deg);
+            transition: all 2s;
+
+        }
+
+        .out-bottom {
+            transform: translateY(100px) rotateX(-90deg);
+            transition: all 2s;
+
+        }
+
+        .box>span {
+            display: block;
+            width: 90px;
+            height: 90px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-top: -45px;
+            margin-left: -45px;
+            border: 5px solid #424242;
+            border-radius: 30%;
+            background-color: #ffe7f9;
+            opacity: 0.7;
+        }
+
+        .in-front {
+            transform: translateZ(45px);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .in-back {
+            transform: translateZ(-45px);
+        }
+
+        .in-left {
+            transform: translateX(-45px) rotateY(-90deg);
+        }
+
+        .in-right {
+            transform: translateX(45px) rotateY(90deg);
+        }
+
+        .in-top {
+            transform: translateY(-45px) rotateX(90deg);
+        }
+
+        .in-bottom {
+            transform: translateY(45px) rotateX(-90deg);
+        }
+
+        .points {
+            display: block;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            margin: 5px;
+            background-color: #bb9aff;
+        }
+
+        /* 为1点的父盒子设置 */
+        span.in-front {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .in-front>span {
+            width: 40px;
+            height: 40px;
+        }
+
+        /* 为2点的盒子设置 */
+        span.in-left {
+            display: flex;
+            justify-content: center;
+        }
+
+        span.in-left>.pitL2 {
+            align-self: flex-end;
+        }
+
+        .in-left>span,
+        .in-right>span {
+            width: 25px;
+            /*2点和4点都是排横纵两排，所有设置一样大小*/
+            height: 25px;
+            margin: 10px;
+        }
+
+        /* 设置3点的盒子 */
+        span.in-back {
+            display: flex;
+        }
+
+        .in-back .pitB2 {
+            align-self: center;
+        }
+
+        .in-back .pitB3 {
+            align-self: flex-end;
+        }
+
+        /* 设置4点的盒子 */
+        span.in-right {
+            display: flex;
+            /* 不设置对齐方式，默认为主轴对齐 */
+            /* 换行 */
+            flex-wrap: wrap;
+        }
+
+        /* 设置5点的盒子 */
+        span.in-top {
+            display: flex;
+        }
+
+        .in-top .pitT1,
+        .in-top .pitT3 {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .in-top .pitT2 {
+            display: flex;
+            align-self: center;
+        }
+
+        /* 设置6点的盒子 */
+        span.in-bottom {
+            display: flex;
+            flex-wrap: wrap;
+            align-content: space-around;
+        }
+
+        .cube:hover .out-front {
+            animation:alternate;
+            transition: all 2s ;
+            transform:translateZ(200px);
+
+        }
+
+        .cube:hover .out-back {
+            transition: all 2s;
+            transform: translateZ(-200px);
+        }
+
+        .cube:hover .out-left {
+            transition: all 2s;
+            transform: translateX(-200px) rotateY(-90deg);
+        }
+
+        .cube:hover .out-right {
+            transition: all 2s;
+            transform: translateX(200px) rotateY(90deg);
+        }
+
+        .cube:hover .out-top {
+            transition: all 2s;
+            transform: translateY(-200px) rotateX(90deg);
+        }
+
+        .cube:hover .out-bottom {
+            transition: all 2s;
+            transform: translateY(200px) rotateX(-90deg);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="cube">
+            <div class="out-front">前面</div>
+            <div class="out-back">后面</div>
+            <div class="out-left">左边</div>
+            <div class="out-right">右边</div>
+            <div class="out-top">上面</div>
+            <div class="out-bottom">下面</div>
+            <ul class="bigbox">
+                <ul class="box">
+                    <span class="in-front">
+                        <span class="points"></span>
+                    </span>
+                    <span class="in-back">
+                        <span class="points"></span>
+                        <span class="points pitB2"></span>
+                        <span class="points pitB3"></span>
+                    </span>
+                    <span class="in-left">
+                        <span class="points"></span>
+                        <span class="points pitL2"></span>
+                    </span>
+                    <span class="in-right">
+                        <span class="points"></span>
+                        <span class="points"></span>
+                        <span class="points"></span>
+                        <span class="points"></span>
+                    </span>
+                    <span class="in-top">
+                        <span class="pitT1">
+                            <span class="points"></span>
+                            <span class="points"></span>
+                        </span>
+                        <span class="pitT2">
+                            <span class="points"></span>
+                        </span>
+                        <span class="pitT3">
+                            <span class="points"> </span>
+                            <span class="points"></span>
+                        </span>
+                    </span>
+                    <span class="in-bottom">
+                        <span class="points"></span>
+                        <span class="points"></span>
+                        <span class="points"></span>
+                        <span class="points"></span>
+                        <span class="points"></span>
+                        <span class="points"></span>
+                    </span>
+                </ul>
+            </ul>
+        </div>
+    </div>
+</body>
+
+</html>

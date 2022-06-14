@@ -1,0 +1,99 @@
+.home {
+    background: #f7f7f7;
+    padding-bottom: 50px;
+    border-top: 10px solid #fff;
+
+    .menu-search {
+        position: fixed;
+        top: 0;
+        width: 100%;
+    }
+    .van-swipe{
+        top: 10px;
+    }
+
+    .tips {
+        line-height: 40px;
+        text-align: center;
+        position: relative;
+        top: 6px;
+        background: #fff;
+    }
+
+    .txt {
+        height: 40px;
+        font-size: 28px;
+        background-image: -webkit-linear-gradient(left, #ff5a5a, #66ffff 10%, #00ffdd 20%, #5a94ff 30%, #CCCCFF 40%, #1dbac5e0 50%, #CCCCFF 60%, #5acbff 70%, #1dbac5e0 80%, #66FFFF 90%, #ff5a5a 100%);
+        -webkit-text-fill-color: transparent;
+        /* 将字体设置成透明色 */
+        -webkit-background-clip: text;
+        /* 裁剪背景图，使文字作为裁剪区域向外裁剪 */
+        -webkit-background-size: 200% 100%;
+        -webkit-animation: masked-animation 4s linear infinite;
+    }
+
+    .van-icon-fire-o {
+        font-size: 28px;
+        color: #F00;
+        text-shadow: 0 0 4px #FFF, 0 -5px 4px #ff3, 2px -10px 6px #fd3, -2px -15px 10px #f80, 2px -25px 20px #ff5a5a;
+        margin-right: 5px;
+    }
+
+    @keyframes masked-animation {
+        0% {
+            background-position: 0 0;
+        }
+
+        100% {
+            background-position: -100% 0;
+        }
+    }
+}
+
+.banner {
+    /deep/.van-tab__pane {
+        padding: 10px;
+    }
+
+    .tab-item {
+        width: calc(~"50% - 30px");
+        padding: 10px;
+        border-radius: 10px;
+        background: #fff;
+        margin: 5px;
+
+        img {
+            width: 150px;
+            height: 150px;
+            margin-left: 5px;
+        }
+    }
+
+    .title {
+        height: 18px;
+        font-size: 16px;
+        padding: 10px 0;
+        overflow: hidden;
+        white-space: nowrap;
+        //当文本对象溢出是显示...
+        text-overflow: ellipsis;
+    }
+
+    .price {
+        font-size: 16px;
+        width: 69px;
+        color: #ff5a5a;
+        font-weight: bold;
+        margin-top: 3px;
+    }
+
+    .saled {
+        color: #a8a8a8;
+        margin-left: 10px;
+        margin-top: 1px;
+    }
+
+    .money {
+        font-size: 12px;
+    }
+}

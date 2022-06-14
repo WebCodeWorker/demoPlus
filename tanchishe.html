@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style type="text/css">
+     
+        .main {
+            width: 800px;
+            height: 500px;
+            margin: 50px auto;
+        }
+        button {
+            width: 100px;
+            height: 40px;
+        }
+        .box {
+            position: relative;
+            width: 800px;
+            height: 500px;
+            background: #ccc;
+        }
+    </style>
+</head>
+<body>
+    <script type="text/javascript">
+        //大盒子
+        var main = document.createElement('div');
+        //开始按钮
+        var btn  = document.createElement('button');
+        //游戏地图
+        var map = document.createElement('div');
+        //分数框
+        var fenshu = document.createElement('input');
+        //定义得分
+        var marsk = -1;
+        // 定义蛇的初始速度
+        var speed = 200;
+        fenshu.setAttribute("type","text")
+        fenshu.style.marginLeft = "600px"
+        map.className = "box";
+        main.className = "main";
+        btn.innerHTML = "开始游戏"
+        document.body.appendChild(fenshu)
+        document.body.appendChild(main)
+        main.appendChild(btn)
+        main.appendChild(map)
+
+        console.log(map)
+       // 使用构造方法创建蛇，
+        function Snake()
+        {
+            // 设置蛇的宽、高、默认走的方向
+            this.width = 20;
+            this.height = 20;
+            this.direction = 'right';
+
+            this.body = [
+                {x:2, y:0},   // 蛇头，第一个点
+                {x:1, y:0},   // 蛇脖子，第二个点
+                {x:0, y:0}    // 蛇尾，第三个点
+            ];
+
+            // 显示蛇
+            this.display = function() {
+                // 创建蛇
+                for (var i=0; i<this.body.length; i++) {
+                    if (this.body[i].x != null) {  
+                        var s = document.createElement('div');
+                        // 将节点保存到状态中
+                        this.body[i].flag = s;
+                        // 设置宽高
+                        s.style.width = this.width + 'px';
+                        s.style.height = this.height + 'px';
+                        s.style.borderRadius =  "50%";
+                        s.style.background = "rgb(" + Math.floor(Math.random()*256) + "," + Math.floor(Math.random()*256) + "," + Math.floor(Math.random()*256) + ")";
+                        // 设置位置
+                        s.style.position = 'absolute';
+                        s.style.left = this.body[i].x * this.width + 'px';
+                        s.style.top = this.body[i].y * this.height + 'px';
+                        // 添加进去
+                        map.appendChild(s);
+                    }
+                }
+            };
+
+            // 让蛇跑起来,后一个元素到前一个元素的位置
+            this.run = function() {
+                // 后一个元素到前一个元素的位置
+                for (var i=this.body.length-1; i>0; i--) {
+                    this.body[i].x = this.body[i-1].x;
+                    this.body[i].y = this.body[i-1].y;
+                }
+
+                // 根据方向处理蛇头
+                switch(this.direction)
+                {
+                    case "left":
+                        this.body[0].x -= 1;
+                        break;
+                    case "right":
+                        this.body[0].x += 1;
+                        break;
+                    case "up":
+                        this.body[0].y -= 1;
+                        break;
+                    case "down":
+                        this.body[0].y += 1;
+                        break;
+                }
+                // 判断是否出界
+                if (this.body[0].x < 0 || this.body[0].x > 39 || this.body[0].y < 0 || this.body[0].y > 24) {
+                    clearInterval(timer);   // 清除定时器，
+                    alert("撞墙？游戏结束！");
+                    //分数清零
+                    fenshu.value = "0";
+                    // 删除旧的
+                    for (var i=0; i<this.body.length; i++) {
+                        if (this.body[i].flag != null) {  
+                            map.removeChild(this.body[i].flag);
+                        }
+                    }
+                    this.body = [   // 回到初始状态，
+                        {x:2, y:0},
+                        {x:1, y:0},
+                        {x:0, y:0}
+                    ];
+                    this.direction = 'right';
+                    this.display();   // 显示初始状态
+                    return false;   // 结束
+                }
+
+                // 判断蛇头吃到食物，xy坐标重合
+                if (this.body[0].x == food.x && this.body[0].y == food.y) {
+                    // 蛇加一节
+                    this.body.push({x:null, y:null, flag: null});
+                    marsk++
+                    fenshu.value = marsk;
+                    //蛇的速度
+                    speed = speed - (speed * 0.1);
+                    clearInterval(timer);
+                    timer = setInterval("snake.run()", speed); 
+                    // 清除食物,重新生成食物
+                    map.removeChild(food.flag);
+                    food.display();
+                   
+                }
+       
+
+                // 吃到自己死亡
+                for (var i=4; i<this.body.length; i++) {
+                    if (this.body[0].x == this.body[i].x && this.body[0].y == this.body[i].y) {
+                        clearInterval(timer);   // 清除定时器，
+                        alert("吃自己？游戏结束");
+                        // 删除旧的
+                        for (var i=0; i<this.body.length; i++) {
+                            if (this.body[i].flag != null) {   
+                                map.removeChild(this.body[i].flag);
+                            }
+                        }
+                        this.body = [   // 回到初始状态，
+                            {x:2, y:0},
+                            {x:1, y:0},
+                            {x:0, y:0}
+                        ];
+                        this.direction = 'right';
+                        this.display();   // 显示初始状态
+                        return false;   // 结束
+                    }
+                }
+
+                // 先删掉初始的蛇，在显示新蛇
+                for (var i=0; i<this.body.length; i++) {
+                    if (this.body[i].flag != null) {  
+                        map.removeChild(this.body[i].flag);
+                    }
+                }
+
+                // 重新显示蛇
+                this.display();
+
+            }
+        }
+
+        // 构造食物
+        function Food()
+        {
+            this.width = 20;
+            this.height = 20;
+
+            this.display = function() {
+                var f = document.createElement('div');
+                this.flag = f;
+                f.style.width = this.width + 'px';
+                f.style.height = this.height + 'px';
+                f.style.background = 'red';
+                f.style.borderRadius = '50%';
+                f.style.position = 'absolute';
+                this.x = Math.floor(Math.random()*40);
+                this.y = Math.floor(Math.random()*20);
+                f.style.left = this.x * this.width + 'px';
+                f.style.top = this.y * this.height + 'px';
+                map.appendChild(f);
+            }
+            marsk++;
+            fenshu.value = marsk;
+        }
+
+        var snake = new Snake();
+        var food = new Food();
+        snake.display();   // 初始化显示
+        food.display();
+
+        // 给body加按键事件，上下左右
+        document.body.onkeydown = function(e) {
+            var ev = e || window.event;
+
+            switch(ev.keyCode)
+            {
+                case 38:
+                    if (snake.direction != 'down') {   // 不允许返回，向上的时候不能向下
+                        snake.direction = "up";
+                    }
+                    break;
+                case 40:
+                    if (snake.direction != "up") {
+                        snake.direction = "down";
+                    }
+                    break;
+                case 37:
+                    if (snake.direction != "right") {
+                        snake.direction = "left";
+                    }
+                    break;
+                case 39:
+                    if (snake.direction != "left") {
+                        snake.direction = "right";
+                    }
+                    break;
+            }
+        };
+
+        // 点击开始时，动起来
+        var timer;
+        btn.onclick = function() {
+            clearInterval(timer);
+            timer = setInterval("snake.run()",speed); 
+        };
+
+
+    </script>
+</div>
+</body>
+</html>

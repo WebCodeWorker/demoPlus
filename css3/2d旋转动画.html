@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 330px;
+            height: 330px;
+            border-radius: 50%;
+
+        }
+        
+        i {
+            width: 300px;
+            height: 300px;
+            background-image: url(./1.jpg);
+            border-radius: 50%;
+            display: block;
+            background-repeat: no-repeat;
+            background-position: top center;
+            margin: 15px auto;
+            position: absolute;
+            top: 7px;
+            left: 22px;
+            /* opacity: 0.5; */
+        }
+
+        .circl {
+            width: 330px;
+            height: 330px;
+            border-radius: 50%;
+            position: relative;
+            display: inline-block;
+            overflow: hidden;
+            background-image:  linear-gradient(to top , #29f9f0 0, rgb(192, 40, 124) 80%);
+        }
+
+        .circl:after {
+            content: '';
+            position: absolute;
+            width: 50%;
+            height: 100%;
+            background-image:  linear-gradient(to top bottom, #29f9f0 0, rgb(192, 40, 124) 80%);
+            top: 0;
+            left: 0;
+        }
+
+        .circl.aaa {
+            transition: ease-in 3s;
+            transform: rotate(5000deg);
+
+        }
+
+        .circl.bbb {
+            transition: ease-in-out 3s;
+            transform: rotate(0deg);
+
+        }
+        .info-back{
+            color: aliceblue;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            flex-direction: column;
+            opacity: 0;
+            transition: all 2s;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: rgba(10, 0, 0, 0.5);
+        }
+
+        .info-back:hover{
+            transition: all 2s;
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <div class="circl"></div>
+        <i>
+            <div class="info-back">
+                <h3>Heading here</h3>
+                <p>Description goes here</p>
+            </div>
+        </i>
+    </div>
+</body>
+</html>
+<script>
+    document.querySelector(".box").onmouseenter = function () {
+        document.querySelector(".circl").classList.toggle("aaa");
+        console.log(111)
+    };
+    document.querySelector(".box").onmouseleave = function () {
+        document.querySelector(".circl").classList.toggle("bbb");
+        console.log(111)
+    };
+
+</script>
